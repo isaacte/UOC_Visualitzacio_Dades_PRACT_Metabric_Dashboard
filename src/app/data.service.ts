@@ -91,7 +91,7 @@ export class DataService {
     const survival5y = survivalMonths >= 60;
 
     // 3. Tractaments (normalitzats)
-    let regimen = 'None';
+    let regimen;
     const treatments = [];
     if (chemo) treatments.push('Chemo');
     if (radio) treatments.push('Radio');
