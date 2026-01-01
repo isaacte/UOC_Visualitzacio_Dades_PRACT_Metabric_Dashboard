@@ -78,7 +78,7 @@ export class DataService {
     // Tractaments: Convertir YES/NO a booleans
     const parseBool = (val: any) => {
       if (!val) return false;
-      return val === 'yes'
+      return val === 'YES'
     };
 
     const chemo = parseBool(d['Chemotherapy']);
