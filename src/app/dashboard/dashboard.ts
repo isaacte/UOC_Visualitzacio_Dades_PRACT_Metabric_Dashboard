@@ -9,7 +9,6 @@ import * as dc from 'dc';
   selector: 'app-dashboard',
   imports: [],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit, OnDestroy {
   loading = signal(true)
