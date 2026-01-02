@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit, signal} from '@angular/core';
 import { DataService } from '../data.service';
+import {KpiBoard} from '../kpi-board/kpi-board';
 
 import * as d3 from 'd3';
 import crossfilter from 'crossfilter2';
@@ -7,7 +8,7 @@ import * as dc from 'dc';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [KpiBoard],
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit, OnDestroy {

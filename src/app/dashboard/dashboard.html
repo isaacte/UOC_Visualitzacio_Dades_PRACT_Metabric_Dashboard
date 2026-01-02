@@ -1,1 +1,29 @@
-<p>dashboard works!</p>
+
+<div class="flex h-full bg-slate-100 overflow-hidden">
+
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="absolute inset-0 bg-white/80 z-50 flex items-center justify-center backdrop-blur-sm">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    </div>
+  }
+
+  @if (ndx) {
+    <!-- Àrea principal -->
+    <main class="flex-1 overflow-y-auto p-6 relative flex flex-col">
+      <div class="flex-1">
+        <!-- KPI Board -->
+        <app-kpi-board [ndx]="ndx"></app-kpi-board>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-4 border-t border-slate-200 pt-6 pb-8 text-center">
+        <div class="text-xs text-slate-500 space-y-1">
+          <p><strong>Font de l'Estudi:</strong> Curtis et al. (2012). <em>The genomic and transcriptomic architecture of 2,000 breast tumours reveals novel subgroups.</em> Nature 486, 346–352.</p>
+          <p>Visualització generada per a propòsits acadèmics i de recerca oncològica.</p>
+        </div>
+      </footer>
+    </main>
+  }
+</div>
