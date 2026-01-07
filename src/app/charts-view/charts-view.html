@@ -1,0 +1,121 @@
+<!-- Guia d'Interpretació (Toggleable) -->
+@if (showGuide()) {
+  <div class="bg-white rounded-xl border border-indigo-100 shadow-sm p-6 mb-8 relative">
+    <button (click)="toggleGuide()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">🎯 Preguntes d'Investigació i Interpretació</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+      <!-- Q1 -->
+      <div>
+        <strong class="text-indigo-600 block mb-1">P1: Quin és el millor predictor de supervivència: Estadi o PAM50?</strong>
+      </div>
+
+      <!-- Q2 -->
+      <div>
+        <strong class="text-indigo-600 block mb-1">P2: Com afecten els diferents tractaments segons el PAM50 a la supervivència a 5 anys?</strong>
+      </div>
+
+      <!-- Q3 -->
+      <div>
+        <strong class="text-indigo-600 block mb-1">P3: Quin efecte té l'edat sobre la taxa de supervivència? </strong>
+      </div>
+
+      <!-- Q4 -->
+      <div>
+        <strong class="text-indigo-600 block mb-1">P4: Quin efecte té la mida del tumor sobre la taxa de supervivència?</strong>
+      </div>
+    </div>
+  </div>
+} @else {
+  <button (click)="toggleGuide()" class="mb-4 bg-white border border-indigo-200 text-indigo-700 hover:bg-indigo-50 px-4 py-2 rounded-lg text-sm font-bold shadow-sm flex items-center gap-2 transition-all">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+    </svg>
+    Veure Preguntes d'Investigació
+  </button>
+}
+
+<!-- Comparació de Predictors (P1) -->
+<div class="mb-8">
+  <h3 class="text-lg font-bold text-slate-800 mb-4 pl-3 border-l-4 border-purple-500">
+    P1 Comparació: Estadi TNM vs Subtipus PAM50
+  </h3>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Taxa Estadi -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+      <h4 class="text-sm font-bold text-slate-700 mb-2">Supervivència per Estadi TNM</h4>
+      <div class="flex justify-center">
+        <div id="stage-rate-chart" class="w-full"></div>
+      </div>
+    </div>
+    <!-- Taxa PAM50 -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+      <h4 class="text-sm font-bold text-slate-700 mb-2">Supervivència per Subtipus PAM50</h4>
+      <div class="flex justify-center">
+        <div id="pam50-rate-chart" class="w-full"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tractaments (P2) -->
+<div class="mb-8">
+  <h3 class="text-lg font-bold text-slate-800 mb-4 pl-3 border-l-4 border-amber-500">
+    P2: Tractaments segons PAM50
+  </h3>
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <h4 class="text-sm font-bold text-slate-700">Matriu Subtipus Molecular (X) vs. Règim de Tractament (Y)</h4>
+        <p class="text-xs text-slate-500 mt-1">La intensitat del color representa la Taxa de Supervivència a 5 anys.</p>
+      </div>
+      <div class="text-right">
+        <div class="flex items-center gap-2 text-xs">
+          <span>Baixa Supervivència</span>
+          <div class="w-24 h-2 rounded bg-gradient-to-r from-red-500 via-yellow-400 to-emerald-500"></div>
+          <span>Alta Supervivència</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center overflow-x-auto">
+      <div id="survival-heatmap" class="w-full"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Factors cínics (P3 i P4) -->
+<div class="mb-8">
+  <h3 class="text-lg font-bold text-slate-800 mb-4 pl-3 border-l-4 border-emerald-500">
+    P3 i P4: Anàlisi d'Edat i Mida del Tumor
+  </h3>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- P3: Edat -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+      <h4 class="text-sm font-bold text-slate-700 mb-2">P3: Supervivència per Grup d'Edat</h4>
+      <div class="flex justify-center">
+        <div id="age-stacked-chart" class="w-full"></div>
+      </div>
+    </div>
+
+    <!-- P4: Mida -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+      <h4 class="text-sm font-bold text-slate-700 mb-2">P4: Supervivència per Mida del Tumor</h4>
+      <div class="flex justify-center">
+        <div id="size-rate-chart" class="w-full"></div>
+      </div>
+    </div>
+
+    <!-- Scatter de mida i edat -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 lg:col-span-2">
+      <h4 class="text-sm font-bold text-slate-700 mb-2">Context Demogràfic (Edat vs Mida)</h4>
+      <div class="flex justify-center overflow-x-auto">
+        <div id="scatter-chart" class="w-full"></div>
+      </div>
+    </div>
+  </div>
+</div>

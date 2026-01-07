@@ -5,10 +5,11 @@ import {KpiBoard} from '../kpi-board/kpi-board';
 import * as d3 from 'd3';
 import crossfilter from 'crossfilter2';
 import * as dc from 'dc';
+import {ChartsViewComponent} from '../charts-view/charts-view';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [KpiBoard],
+  imports: [KpiBoard, ChartsViewComponent],
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit, OnDestroy {
