@@ -55,6 +55,7 @@ export class ChartsViewComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+
   // Funció per actualitzar les dimensions dels gràfics
   private updateChartDimensions() {
     // Per cada un dels gràfics
@@ -164,6 +165,9 @@ export class ChartsViewComponent implements OnInit, OnDestroy, AfterViewInit {
       () => ({ total: 0, survived: 0, rate: 0 })
     );
 
+    // Grups nets (amb dades) per al heatmap
+    const cleanHeatmapGroup = this.removeEmptyBins(heatmapGroup);
+
     // Preparem les dades per a cada gràfic
     const ageSurvivedGroup = ageStackDim.group().reduceSum((d: any) => d.survival5y ? 1 : 0);
     const ageDeceasedGroup = ageStackDim.group().reduceSum((d: any) => d.survival5y ? 0 : 1);
@@ -177,7 +181,7 @@ export class ChartsViewComponent implements OnInit, OnDestroy, AfterViewInit {
     const pamColors = globalD3.scaleOrdinal().range(['#3b82f6', '#14b8a6', '#f59e0b', '#f43f5e', '#6366f1']);
     this.setupRateBarChart('#pam50-rate-chart', pam50Dim, pam50RateGroup, 'Subtipus Molecular', pamColors, pam50OrderFn, true);
 
-    this.setupHeatmap('#survival-heatmap', heatmapDim, heatmapGroup, pam50HeatmapOrderFn);
+    this.setupHeatmap('#survival-heatmap', heatmapDim, cleanHeatmapGroup, pam50HeatmapOrderFn);
 
     this.setupStackedAgeChart('#age-stacked-chart', ageStackDim, ageSurvivedGroup, ageDeceasedGroup, ageOrder);
     this.setupRateBarChart('#size-rate-chart', tumorSizeGroupDim, sizeRateGroup, 'Grup Mida Tumor (mm)');
@@ -401,6 +405,16 @@ export class ChartsViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.charts.push(chart);
     return chart;
+  }
+
+  // Filtra els grups buits perquè el Heatmap no els dibuixi
+  private removeEmptyBins(source_group: any) {
+    return {
+      all: () => {
+        // Filtrem basant-nos en 'total' perquè el teu reductor retorna un objecte {total, survived, rate}
+        return source_group.all().filter((d: any) => d.value.total > 0);
+      }
+    };
   }
 
   //Funció per a crear el gràfic de supervivència x edat apilat

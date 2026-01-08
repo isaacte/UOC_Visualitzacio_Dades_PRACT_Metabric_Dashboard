@@ -1,0 +1,84 @@
+
+<aside class="w-80 bg-white shadow-xl z-20 flex flex-col h-full border-r border-slate-200">
+  <div class="p-5 border-b border-slate-100 bg-slate-50/50 sticky top-0 z-10">
+    <div>
+      <h2 class="text-sm font-bold uppercase text-slate-600 tracking-wider">Filtres</h2>
+      <p class="text-xs text-slate-500 mt-1">Desmarca les caselles per excloure subgrups.</p>
+    </div>
+  </div>
+
+  <div class="p-5 space-y-4 overflow-y-auto custom-scrollbar">
+
+    <!-- Grup: Molecular (PAM50)  -->
+    <details open class="group">
+      <summary class="flex items-center justify-between cursor-pointer list-none text-xs font-bold uppercase text-slate-500 pb-2 border-b group-open:text-pink-600 transition-colors">
+        <span>Perfil Molecular</span>
+        <span class="transition group-open:rotate-180">
+            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+      </summary>
+      <div class="pt-4 space-y-4 animate-in slide-in-from-top-2 duration-200">
+        <div>
+          <label class="text-xs font-semibold text-slate-700 block mb-1">Subtipus PAM50</label>
+          <div id="filter-pam50" class="text-sm"></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Grup: Dades Clíniques -->
+    <details open class="group">
+      <summary class="flex items-center justify-between cursor-pointer list-none text-xs font-bold uppercase text-slate-500 pb-2 border-b group-open:text-indigo-600 transition-colors">
+        <span>Clínica i Resultats</span>
+        <span class="transition group-open:rotate-180">
+          <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+      </summary>
+      <div class="pt-4 space-y-4 animate-in slide-in-from-top-2 duration-200">
+        <div>
+          <label class="text-xs font-semibold text-slate-700 block mb-1">Supervivència (5 Anys)</label>
+          <div id="filter-outcome" class="text-sm"></div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-700 block mb-1">Estadi TNM</label>
+          <div id="filter-stage" class="text-sm"></div>
+        </div>
+        <div>
+          <!-- Selector de rang per a Edat -->
+          <label class="text-xs font-semibold text-slate-700 block mb-1">Edat del Pacient (Rang)</label>
+          <p class="text-[10px] text-slate-400 mb-2">Selecciona i arrossega sobre el gràfic</p>
+          <div id="filter-age" class="text-sm"></div>
+        </div>
+        <div>
+          <!-- Nou selector de rang per a Mida del Tumor -->
+          <label class="text-xs font-semibold text-slate-700 block mb-1">Mida del Tumor (Rang)</label>
+          <p class="text-[10px] text-slate-400 mb-2">Selecciona i arrossega sobre el gràfic</p>
+          <div id="filter-tumor-size" class="text-sm"></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Grup: Tractaments -->
+    <details open class="group">
+      <summary class="flex items-center justify-between cursor-pointer list-none text-xs font-bold uppercase text-slate-500 pb-2 border-b group-open:text-emerald-600 transition-colors">
+        <span>Teràpies</span>
+        <span class="transition group-open:rotate-180">
+            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+      </summary>
+      <div class="pt-4 space-y-4">
+        <div>
+          <span class="text-xs font-semibold text-slate-700 block mb-1">Quimioteràpia</span>
+          <div id="filter-chemo" class="text-sm"></div>
+        </div>
+        <div>
+          <span class="text-xs font-semibold text-slate-700 block mb-1">Hormonoteràpia</span>
+          <div id="filter-hormone" class="text-sm"></div>
+        </div>
+        <div>
+          <span class="text-xs font-semibold text-slate-700 block mb-1">Radioteràpia</span>
+          <div id="filter-radio" class="text-sm"></div>
+        </div>
+      </div>
+    </details>
+  </div>
+</aside>

@@ -1,0 +1,8 @@
+/* Estils per ocultar el reset */
+::ng-deep input[type="reset"] {
+  display: none !important;
+}
+
+::ng-deep .dc-cbox-group li:has(input[type="reset"]) {
+  display: none !important;
+}

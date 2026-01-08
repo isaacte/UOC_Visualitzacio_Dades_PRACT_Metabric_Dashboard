@@ -6,10 +6,11 @@ import * as d3 from 'd3';
 import crossfilter from 'crossfilter2';
 import * as dc from 'dc';
 import {ChartsViewComponent} from '../charts-view/charts-view';
+import {SidebarFiltersComponent} from '../sidebar-filters/sidebar-filters';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [KpiBoard, ChartsViewComponent],
+  imports: [KpiBoard, ChartsViewComponent, SidebarFiltersComponent],
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit, OnDestroy {
